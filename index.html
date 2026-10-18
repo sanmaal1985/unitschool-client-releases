@@ -1,2 +1,165 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>UNIT School</title></head><body><p>Страница скачивания появится здесь с первым релизом.</p></body></html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FAF6F0">
+  <title>UNIT School</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    /* Palette and fonts follow the app design system (lib/design_system/tokens). */
+    @font-face { font-family: 'Nunito Sans'; font-weight: 400; font-display: swap; src: url('fonts/NunitoSans-Regular.ttf') format('truetype'); }
+    @font-face { font-family: 'Nunito Sans'; font-weight: 800; font-display: swap; src: url('fonts/NunitoSans-ExtraBold.ttf') format('truetype'); }
+    @font-face { font-family: 'Baloo 2'; font-weight: 700; font-display: swap; src: url('fonts/Baloo2-Bold.ttf') format('truetype'); }
+    :root {
+      --bg: #FAF6F0; --surface: #FFFFFF; --ink: #2B2622; --ink2: #7A6F64;
+      --line: #ECE4D8; --primary-ink: #C0503F; --primary-soft: #FCE7E1;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink);
+           font: 400 16px/1.5 'Nunito Sans', system-ui, sans-serif; }
+    main { max-width: 28rem; margin: 0 auto; padding: 1rem 1rem 2.5rem; }
+    .lang { display: flex; justify-content: flex-end; gap: .4rem; }
+    .lang button { font: 800 .8rem/1 'Nunito Sans', system-ui, sans-serif; padding: .5rem .75rem; min-height: 2.25rem;
+                   border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--primary-ink); border-color: var(--primary-ink); color: #fff; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--primary-ink); outline-offset: 2px; }
+    .hero { text-align: center; padding: 1.25rem 0 1rem; }
+    .hero img { width: 148px; height: 148px; object-fit: contain; }
+    h1 { font: 700 1.75rem/1.2 'Baloo 2', 'Nunito Sans', system-ui, sans-serif; margin: .5rem 0 .25rem; }
+    .sub { margin: 0 auto; max-width: 22rem; color: var(--ink2); }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.25rem;
+            padding: 1.25rem; margin-top: 1.25rem; box-shadow: 0 6px 20px rgba(43, 38, 34, .06); }
+    .btn { display: block; text-align: center; text-decoration: none; background: var(--primary-ink); color: #fff;
+           font: 800 1.15rem/1.2 'Nunito Sans', system-ui, sans-serif; padding: 1rem; border-radius: .9rem; }
+    .btn:active { filter: brightness(.94); }
+    .hint { margin: .9rem 0 0; font-size: .9rem; color: var(--ink2); text-align: center; }
+    .meta { margin: .6rem 0 0; font-size: .85rem; color: var(--ink2); text-align: center; word-break: break-all; }
+    .meta:empty { display: none; }
+    ol { list-style: none; counter-reset: step; margin: 1.25rem 0 0; padding: 0; }
+    li { counter-increment: step; position: relative; padding-left: 2.6rem; margin-bottom: 1rem; }
+    li::before { content: counter(step); position: absolute; left: 0; top: -.05rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+                 background: var(--primary-soft); color: var(--ink); font: 700 1rem/1.9rem 'Baloo 2', 'Nunito Sans', sans-serif; text-align: center; }
+    li:last-child { margin-bottom: 0; }
+    footer { margin-top: 1.5rem; text-align: center; font-size: .85rem; color: var(--ink2); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru" aria-label="Русский">RU</button>
+      <button type="button" data-lang="en" aria-label="English">EN</button>
+      <button type="button" data-lang="sr" aria-label="Srpski">SR</button>
+    </div>
+
+    <div class="hero">
+      <img src="logo.png" alt="UNIT School" width="148" height="148">
+      <h1 data-i18n="title"></h1>
+      <p class="sub" data-i18n="sub"></p>
+    </div>
+
+    <div class="card">
+      <a class="btn" href="https://github.com/sanmaal1985/unitschool-client-releases/releases/latest/download/unitschool.apk" data-i18n="button"></a>
+      <p class="hint" data-i18n="hint"></p>
+      <p class="meta" id="meta"></p>
+      <ol>
+        <li data-i18n="step1"></li>
+        <li data-i18n="step2"></li>
+        <li data-i18n="step3"></li>
+      </ol>
+    </div>
+
+    <footer data-i18n="footer"></footer>
+  </main>
+
+  <script>
+    // Inline strings: three languages like the app (ru is the fallback, Serbian in Latin script).
+    var STRINGS = {
+      ru: {
+        title: 'Установка приложения',
+        sub: 'Неофициальное приложение для электронного журнала. Только для Android.',
+        button: 'Скачать приложение',
+        hint: 'Если файл не скачивается, откройте эту ссылку в браузере (например, Chrome), а не внутри мессенджера.',
+        step1: 'Нажмите «Скачать приложение» и дождитесь загрузки файла.',
+        step2: 'Откройте файл. Если телефон спросит, разрешите установку из этого источника (браузера).',
+        step3: 'Подтвердите установку. Если приложение уже стоит, новая версия встанет поверх, вход сохранится.',
+        footer: 'UNIT School · неофициальное приложение',
+        version: 'Версия {v} ({c})'
+      },
+      en: {
+        title: 'Install the app',
+        sub: 'An unofficial app for the electronic school diary. Android only.',
+        button: 'Download the app',
+        hint: 'If the file does not download, open this link in a browser (for example Chrome) instead of inside a messenger.',
+        step1: 'Tap “Download the app” and wait for the file to finish downloading.',
+        step2: 'Open the file. If the phone asks, allow installation from this source (your browser).',
+        step3: 'Confirm the installation. If the app is already installed, the new version goes over it and you stay signed in.',
+        footer: 'UNIT School · unofficial app',
+        version: 'Version {v} ({c})'
+      },
+      sr: {
+        title: 'Instalacija aplikacije',
+        sub: 'Neslužbena aplikacija za elektronski dnevnik. Samo za Android.',
+        button: 'Preuzmi aplikaciju',
+        hint: 'Ako se fajl ne preuzima, otvorite ovaj link u pregledaču (na primer Chrome), a ne unutar aplikacije za poruke.',
+        step1: 'Pritisnite „Preuzmi aplikaciju“ i sačekajte da se fajl preuzme.',
+        step2: 'Otvorite fajl. Ako telefon pita, dozvolite instalaciju iz ovog izvora (pregledača).',
+        step3: 'Potvrdite instalaciju. Ako je aplikacija već instalirana, nova verzija se instalira preko nje i prijava ostaje sačuvana.',
+        footer: 'UNIT School · neslužbena aplikacija',
+        version: 'Verzija {v} ({c})'
+      }
+    };
+    var info = null;
+
+    function pickLang(saved, navLangs) {
+      if (saved && STRINGS[saved]) return saved;
+      for (var i = 0; i < navLangs.length; i++) {
+        var code = String(navLangs[i]).slice(0, 2).toLowerCase();
+        if (STRINGS[code]) return code;
+      }
+      return 'ru';
+    }
+
+    function renderMeta(lang) {
+      var el = document.getElementById('meta');
+      if (!info) { el.textContent = ''; return; }
+      el.textContent = STRINGS[lang].version.replace('{v}', info.versionName).replace('{c}', info.versionCode)
+        + ' · SHA-256: ' + info.sha256;
+    }
+
+    function apply(lang) {
+      var s = STRINGS[lang];
+      document.documentElement.lang = lang;
+      document.title = 'UNIT School — ' + s.title;
+      var nodes = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < nodes.length; i++) nodes[i].textContent = s[nodes[i].getAttribute('data-i18n')];
+      var buttons = document.querySelectorAll('.lang button');
+      for (var j = 0; j < buttons.length; j++) {
+        buttons[j].setAttribute('aria-pressed', buttons[j].getAttribute('data-lang') === lang ? 'true' : 'false');
+      }
+      renderMeta(lang);
+    }
+
+    function saved() { try { return localStorage.getItem('lang'); } catch (e) { return null; } }
+    function remember(lang) { try { localStorage.setItem('lang', lang); } catch (e) { /* private mode: ignore */ } }
+
+    var current = pickLang(saved(), navigator.languages || [navigator.language || '']);
+    var langButtons = document.querySelectorAll('.lang button');
+    for (var k = 0; k < langButtons.length; k++) {
+      langButtons[k].addEventListener('click', function (ev) {
+        current = ev.currentTarget.getAttribute('data-lang');
+        remember(current);
+        apply(current);
+      });
+    }
+    apply(current);
+
+    // Version info is optional: the download button works without it.
+    fetch('version.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (v) { if (v) { info = v; renderMeta(current); } })
+      .catch(function () {});
+  </script>
+</body>
+</html>
