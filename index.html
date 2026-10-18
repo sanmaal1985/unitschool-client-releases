@@ -42,6 +42,7 @@
     li::before { content: counter(step); position: absolute; left: 0; top: -.05rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
                  background: var(--primary-soft); color: var(--ink); font: 700 1rem/1.9rem 'Baloo 2', 'Nunito Sans', sans-serif; text-align: center; }
     li:last-child { margin-bottom: 0; }
+    .protect { margin: 1.25rem 0 0; padding: .9rem 1rem; border-radius: .9rem; background: var(--primary-soft); color: var(--ink); font-size: .95rem; }
     footer { margin-top: 1.5rem; text-align: center; font-size: .85rem; color: var(--ink2); }
   </style>
 </head>
@@ -68,6 +69,7 @@
         <li data-i18n="step2"></li>
         <li data-i18n="step3"></li>
       </ol>
+      <p class="protect" data-i18n="protect"></p>
     </div>
 
     <footer data-i18n="footer"></footer>
@@ -84,6 +86,7 @@
         step1: 'Нажмите «Скачать приложение» и дождитесь загрузки файла.',
         step2: 'Откройте файл. Если телефон спросит, разрешите установку из этого источника (браузера).',
         step3: 'Подтвердите установку. Если приложение уже стоит, новая версия встанет поверх, вход сохранится.',
+        protect: 'Если Google Play Protect покажет «App blocked to protect your device» («Приложение заблокировано»), не нажимайте большую кнопку «Got it» («Понятно»): нажмите маленькую ссылку «Install anyway» («Всё равно установить»). Google показывает это для приложений разработчика, которого ещё не встречал.',
         footer: 'UNIT School · неофициальное приложение',
         version: 'Версия {v} ({c})'
       },
@@ -95,6 +98,7 @@
         step1: 'Tap “Download the app” and wait for the file to finish downloading.',
         step2: 'Open the file. If the phone asks, allow installation from this source (your browser).',
         step3: 'Confirm the installation. If the app is already installed, the new version goes over it and you stay signed in.',
+        protect: 'If Google Play Protect shows “App blocked to protect your device”, do not tap the big “Got it” button: tap the small “Install anyway” link instead. Google shows this for apps from a developer it has not seen before.',
         footer: 'UNIT School · unofficial app',
         version: 'Version {v} ({c})'
       },
@@ -106,6 +110,7 @@
         step1: 'Pritisnite „Preuzmi aplikaciju“ i sačekajte da se fajl preuzme.',
         step2: 'Otvorite fajl. Ako telefon pita, dozvolite instalaciju iz ovog izvora (pregledača).',
         step3: 'Potvrdite instalaciju. Ako je aplikacija već instalirana, nova verzija se instalira preko nje i prijava ostaje sačuvana.',
+        protect: 'Ako Google Play Protect prikaže „App blocked to protect your device“, ne pritiskajte veliko dugme „Got it“, već mali link „Install anyway“ (Instaliraj svejedno). Google ovo prikazuje za aplikacije programera koga još nije video.',
         footer: 'UNIT School · neslužbena aplikacija',
         version: 'Verzija {v} ({c})'
       }
